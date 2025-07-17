@@ -92,6 +92,13 @@ To view detailed session data for a specific day, click the **View** button. Thi
 | SID | Serial | Logon Time | Username | Program | Redo Size | Last Updated |
 |-----|--------|------------|----------|---------|-----------|--------------|
 
+## Demo
+
+You can view a demo of the application at the following link:
+
+🔗 [https://demo-odbr.xabierbahillo.dev/](https://demo-odbr.xabierbahillo.dev/)
+
+
 ## Support / Donations
 
 If you find this project useful and want to support its development, consider making a donation:
