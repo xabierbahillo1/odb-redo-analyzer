@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+    <nav th:fragment="mainNav">
+        
+        <div class="brand">
+            <a href="/" class="brand-link">ODB Redo Analyzer</a>
+        </div>
+        <ul>
+            <button id="themeToggleBtn" aria-label="Toggle Dark Mode" title="Toggle Dark Mode">
+            🌙
+        </button>
+            <li onclick="window.location.href='/reports'" th:classappend="${activePage == 'reports'} ? ' active'">View Reports</li>
+            <li onclick="window.location.href='/config'" th:classappend="${activePage == 'config'} ? ' active'">Configuration</li>
+        </ul>
+    </nav>
+</body>
+</html>

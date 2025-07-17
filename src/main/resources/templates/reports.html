@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments/head :: commonHead('Reports')"></div>
+<body>
+    <div th:replace="fragments/header :: mainNav"></div>
+    <main>
+        <h1>View Reports</h1>
+        <p>Explore and analyze redo logs from Oracle-compatible databases with reports to monitor transaction history</p>
+
+        <form method="get" action="/reports" class="filter-form">
+            <label for="fromDate">From:</label>
+            <input type="date" id="fromDate" name="fromDate" th:value="${fromDate}" />
+
+            <label for="toDate">To:</label>
+            <input type="date" id="toDate" name="toDate" th:value="${toDate}" />
+        </form>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Date</th>
+                        <th>Archivelogs Size</th>
+                        <th>Calculated Redo Size</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="s : ${sessions}">
+                        <td>
+                            <form th:action="@{'/reports/detail/' + ${s.id}}" method="get">
+                                <button type="submit">View</button>
+                            </form>
+                        </td>
+                        <td th:text="${s.date}">2025-06-26</td>
+                        <td th:text="${s.oracleRedoSizeFormatted}" th:attr="data-bytes=${s.oracleRedoSize}">123,456,789</td>
+                        <td th:text="${s.calculatedRedoSizeFormatted}" th:attr="data-bytes=${s.calculatedRedoSize}">987,654,321</td>
+                    </tr>
+                    <tr th:if="${sessions.size() == 0}">
+                        <td colspan="5">No records found.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <div th:replace="fragments/footer :: mainFooter"></div>
+
+    <script src="/js/filters.js"></script>
+    <script src="/js/sortTable.js"></script>
+    <script src="/js/themes.js"></script>
+</body>
+</html>

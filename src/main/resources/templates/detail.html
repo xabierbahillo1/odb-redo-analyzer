@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments/head :: commonHead('Detail')"></div>
+<body>
+    <div th:replace="fragments/header :: mainNav"></div>
+    <main>
+        <h1>Redo Usage Details</h1>
+        <p><strong>Date:</strong> <span th:text="${date}">2025-06-26</span></p>
+
+        <div class="top-bar">
+            <div class="button-group">
+                <button onclick="window.location.href='/reports'">Back</button>
+                <button id="exportCsvBtn" type="button" class="export-csv-btn">Export CSV</button>
+            </div>
+
+            <div class="input-wrapper">
+                <input type="text" id="searchInput" placeholder="Type to filter table..." />
+                <svg viewBox="0 0 24 24">
+                    <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 
+                            6.5 6.5 0 109.5 16a6.471 6.471 0 004.23-1.57l.27.28v.79l5 
+                            4.99L20.49 19l-4.99-5zM10 14a4 4 0 110-8 4 4 0 010 8z"/>
+                </svg>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <table id="redoTable">
+                <thead>
+                    <tr>
+                        <th>SID</th>
+                        <th>Serial</th>
+                        <th>Logon Time</th>
+                        <th>Username</th>
+                        <th>Program</th>
+                        <th>Redo Size</th>
+                        <th>Last Updated</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="s : ${sessionUsage}">
+                        <td th:text="${s.sid}">123</td>
+                        <td th:text="${s.serial}">456</td>
+                        <td th:text="${s.logonTime}">2025-06-26 10:00</td>
+                        <td th:text="${s.username}">SYS</td>
+                        <td th:text="${s.program}">sqlplus.exe</td>
+                        <td th:text="${s.redoBytesFormatted}" th:attr="data-bytes=${s.redoBytes}">
+                            5.6 MB
+                        </td>
+                        <td th:text="${s.lastUpdated}">2025-06-26 10:05</td>
+                    </tr>
+                    <tr th:if="${sessionUsage.size() == 0}">
+                        <td colspan="8">No session data found for this day.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <div th:replace="fragments/footer :: mainFooter"></div>
+
+    <script src="/js/searchDetailTable.js"></script>
+    <script src="/js/exportDetailTableCsv.js"></script>
+    <script src="/js/sortTable.js"></script>
+    <script src="/js/themes.js"></script>
+</body>
+</html>

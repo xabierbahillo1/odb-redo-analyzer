@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>ODB Redo Analyzer - Reports</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+</head>
+
+<body>
+    <nav>
+        <div class="brand">
+            <a href="reports.html" class="brand-link">ODB Redo Analyzer</a>
+        </div>
+        <ul>
+            <button id="themeToggleBtn" aria-label="Toggle Dark Mode" title="Toggle Dark Mode">
+                🌙
+            </button>
+            <li onclick="window.location.href='reports.html'" class="active">View Reports</li>
+            <li onclick="window.location.href='config.html'">Configuration</li>
+        </ul>
+    </nav>
+
+    <main>
+        <h1>View Reports</h1>
+        <p>Explore and analyze redo logs from Oracle-compatible databases with reports to monitor transaction history</p>
+
+        <form method="get" action="/reports" class="filter-form">
+            <label for="fromDate">From:</label>
+            <input type="date" id="fromDate" name="fromDate" disabled title="Not available in demo mode"/>
+
+            <label for="toDate">To:</label>
+            <input type="date" id="toDate" name="toDate" disabled title="Not available in demo mode"/>
+        </form>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Date</th>
+                        <th>Archivelogs Size</th>
+                        <th>Calculated Redo Size</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <form action="detail/6.html" method="get">
+                                <button type="submit">View</button>
+                            </form>
+                        </td>
+                        <td class="dynamic-date" data-offset="6"></td>
+                        <td data-bytes="3816810496">3,55 GB</td>
+                        <td data-bytes="3639671852">3,39 GB</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <form action="detail/5.html" method="get">
+                                <button type="submit">View</button>
+                            </form>
+                        </td>
+                        <td class="dynamic-date" data-offset="5"></td>
+                        <td data-bytes="5102410240">4,75 GB</td>
+                        <td data-bytes="4934865744">4,60 GB</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <form action="" method="get">
+                                <button type="submit" disabled title="Not available in demo mode">View</button>
+                            </form>
+                        </td>
+                        <td class="dynamic-date" data-offset="4"></td>
+                        <td data-bytes="5637140480">5,25 GB</td>
+                        <td data-bytes="4661489576">4,34 GB</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <form action="/reports/detail/3" method="get">
+                                <button type="submit" disabled title="Not available in demo mode">View</button>
+                            </form>
+                        </td>
+                        <td class="dynamic-date" data-offset="3"></td>
+                        <td data-bytes="4679599872">4,35 GB</td>
+                        <td data-bytes="4266335032">3,97 GB</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <form action="/reports/detail/2" method="get">
+                                <button type="submit" disabled title="Not available in demo mode">View</button>
+                            </form>
+                        </td>
+                        <td class="dynamic-date" data-offset="2"></td>
+                        <td data-bytes="4272933376">3,98 GB</td>
+                        <td data-bytes="3755626240">3,50 GB</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <form action="/reports/detail/1" method="get">
+                                <button type="submit" disabled title="Not available in demo mode">View</button>
+                            </form>
+                        </td>
+                        <td class="dynamic-date" data-offset="1"></td>
+                        <td data-bytes="4302220032">4,01 GB</td>
+                        <td data-bytes="3888414956">3,62 GB</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <hr>
+        <p>© 2025 Xabier Bahillo — If you find this useful, consider 
+            <a href="https://www.paypal.com/donate/?hosted_button_id=BA88KBWUKYMNU" target="_blank" rel="noopener">
+                donating
+            </a>
+        </p>
+    </footer>
+
+    <script src="js/filters.js"></script>
+    <script src="js/sortTable.js"></script>
+    <script src="js/themes.js"></script>
+
+   <div id="demoModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="demoModalTitle" aria-describedby="demoModalDesc">
+        <div class="modal-content">
+            <h2 id="demoModalTitle">Demo Environment Notice</h2>
+            <p id="demoModalDesc">
+            You are using a demonstration environment. There is no connection to any live server, and all data displayed is fictitious and intended only to showcase functionality.
+            </p>
+            <p>
+            Please note that some features will be locked or unavailable in this demo version.
+            </p>
+            <button id="closeDemoModal" aria-label="Close demo notice">Close</button>
+        </div>
+    </div>
+
+    <script src="js/demo.js"></script>
+
+</body>
+</html>

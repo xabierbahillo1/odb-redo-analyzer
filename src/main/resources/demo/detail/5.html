@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>ODB Redo Analyzer - Detail</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="icon" type="image/x-icon" href="../images/favicon.ico" />
+</head>
+<body>
+    <nav>
+        
+        <div class="brand">
+            <a href="../reports.html" class="brand-link">ODB Redo Analyzer</a>
+        </div>
+        <ul>
+            <button id="themeToggleBtn" aria-label="Toggle Dark Mode" title="Toggle Dark Mode">
+            🌙
+        </button>
+            <li onclick="window.location.href='../reports.html'" class=" active">View Reports</li>
+            <li onclick="window.location.href='../config.html'">Configuration</li>
+        </ul>
+    </nav>
+    <main>
+        <h1>Redo Usage Details</h1>
+        <p><strong>Date:</strong> <span class="dynamic-date" data-offset="5"></span></p>
+
+        <div class="top-bar">
+            <div class="button-group">
+                <button onclick="window.location.href='../reports.html'">Back</button>
+                <button id="exportCsvBtn" type="button" class="export-csv-btn">Export CSV</button>
+            </div>
+
+            <div class="input-wrapper">
+                <input type="text" id="searchInput" placeholder="Type to filter table..." />
+                <svg viewBox="0 0 24 24">
+                    <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 
+                            6.5 6.5 0 109.5 16a6.471 6.471 0 004.23-1.57l.27.28v.79l5 
+                            4.99L20.49 19l-4.99-5zM10 14a4 4 0 110-8 4 4 0 010 8z"/>
+                </svg>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <table id="redoTable">
+                <thead>
+                    <tr>
+                        <th>SID</th>
+                        <th>Serial</th>
+                        <th>Logon Time</th>
+                        <th>Username</th>
+                        <th>Program</th>
+                        <th>Redo Size</th>
+                        <th>Last Updated</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1072</td>
+                        <td>36412</td>
+                        <td>2025-05-05 04:20:53.0</td>
+                        <td>MYUSER</td>
+                        <td>node.exe@client (TNS V1-V3)</td>
+                        <td data-bytes="1899212390">1,76 GB</td>
+                        <td>2025-07-10 23:59:35.0</td>
+                    </tr>
+                    <tr>
+                        <td>1651</td>
+                        <td>42746</td>
+                        <td>2025-07-12 19:00:02.0</td>
+                        <td>SYSTEM</td>
+                        <td>oracle@test (J007)</td>
+                        <td data-bytes="900000000">858,31 MB</td>
+                        <td>2025-07-12 19:34:35.0</td>
+                    </tr>
+                    <tr>
+                        <td>619</td>
+                        <td>2195</td>
+                        <td>2025-07-12 17:03:58.0</td>
+                        <td>USER_EXAMPLE</td>
+                        <td>program.exe@client (TNS V1-V3)</td>
+                        <td data-bytes="580000000">553,85 MB</td>
+                        <td>2025-07-12 17:05:35.0</td>
+                    </tr>
+                    <tr>
+                        <td>572</td>
+                        <td>34120</td>
+                        <td>2025-03-16 07:46:37.0</td>
+                        <td>USER_EXAMPLE</td>
+                        <td>myApp.exe@icoltrans (TNS V1-V3)</td>
+                        <td data-bytes="470000000">448,18 MB</td>
+                        <td>2025-07-12 23:59:35.0</td>
+                    </tr>
+                    <tr>
+                        <td>51</td>
+                        <td>19835</td>
+                        <td>2025-07-12 06:39:50.0</td>
+                        <td>SYS</td>
+                        <td>oracle@test (J000)</td>
+                        <td data-bytes="300000000">286,10 MB</td>
+                        <td>2025-07-12 13:32:35.0</td>
+                    </tr>
+                    <tr>
+                        <td>1110</td>
+                        <td>18340</td>
+                        <td>2025-07-12 06:52:57.0</td>
+                        <td>MYUSER</td>
+                        <td>text.01exe@client (TNS V1-V3)</td>
+                        <td data-bytes="290000000">276,57 MB</td>
+                        <td>2025-07-12 14:03:35.0</td>
+                    </tr>
+                    <tr>
+                        <td>1529</td>
+                        <td>843</td>
+                        <td>2025-07-12 17:03:58.0</td>
+                        <td>USER_EXAMPLE</td>
+                        <td>node.exe@instance-20221107-1332 (TNS V1-V3)</td>
+                        <td data-bytes="270000000">257,49 MB</td>
+                        <td>2025-07-12 23:59:35.0</td>
+                    </tr>
+                    <tr>
+                        <td>1038</td>
+                        <td>26480</td>
+                        <td>2025-03-16 07:38:31.0</td>
+                        <td>USER_EXAMPLE</td>
+                        <td>JDBC Thin Client</td>
+                        <td data-bytes="230000000">219,82 MB</td>
+                        <td>2025-07-12 23:59:35.0</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <hr>
+        <p>© 2025 Xabier Bahillo — If you find this useful, consider 
+            <a href="https://www.paypal.com/donate/?hosted_button_id=BA88KBWUKYMNU" target="_blank" rel="noopener">
+                donating
+            </a>
+        </p>
+    </footer>
+
+    <script src="../js/searchDetailTable.js"></script>
+    <script src="../js/exportDetailTableCsv.js"></script>
+    <script src="../js/sortTable.js"></script>
+    <script src="../js/themes.js"></script>
+    <script src="../js/demo.js"></script>
+    <script src="../js/demoDetail.js"></script>
+
+</body>
+</html>

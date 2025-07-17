@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>ODB Redo Analyzer - Configuration</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+</head>
+<body>
+    <nav>
+        
+        <div class="brand">
+            <a href="reports.html" class="brand-link">ODB Redo Analyzer</a>
+        </div>
+        <ul>
+            <button id="themeToggleBtn" aria-label="Toggle Dark Mode" title="Toggle Dark Mode">
+            🌙
+        </button>
+            <li onclick="window.location.href='reports.html'">View Reports</li>
+            <li onclick="window.location.href='config.html'" class=" active">Configuration</li>
+        </ul>
+    </nav>
+    <main>
+        <h1>Configuration</h1>
+
+        
+        
+
+        <div class="status-container">
+            <strong>Status:</strong>
+            
+            <span class="status-error">
+                <span>Demo</span>
+                <span title="No connection to the backend in the demo environment" 
+                    class="error-tooltip">?</span>
+            </span>
+            
+        </div>
+
+        <form method="post" action="/config">
+            <br />
+            <label for="url">Oracle-compatible DB URL:</label>
+            <input type="text" id="url" name="url" 
+                value="jdbc:oracle:thin:@localhost:1521/orcl" 
+                placeholder="jdbc:oracle:thin:@localhost:1521:xe" required disabled title="Not available in demo mode"/><br /><br />
+
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" 
+                value="system" 
+                placeholder="system" required disabled title="Not available in demo mode"/><br /><br />
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" 
+                value="password" 
+                placeholder="passw" required disabled title="Not available in demo mode"/><br /><br />
+
+           <label for="role">Role (optional):</label>
+            <select id="role" name="role" disabled title="Not available in demo mode">
+                <option value="" selected="selected"></option>
+                <option value="SYSDBA">SYSDBA</option>
+                <option value="SYSOPER">SYSOPER</option>
+                <option value="SYSASM">SYSASM</option>
+            </select><br /><br />
+
+            <button type="submit" disabled title="Not available in demo mode">Save Configuration</button>
+        </form>
+    </main>
+
+    <footer class="footer">
+        <hr>
+        <p>© 2025 Xabier Bahillo — If you find this useful, consider 
+            <a href="https://www.paypal.com/donate/?hosted_button_id=BA88KBWUKYMNU" target="_blank" rel="noopener">
+                donating
+            </a>
+        </p>
+    </footer>
+    <script src="js/themes.js"></script>
+</body>
+</html>

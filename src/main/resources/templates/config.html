@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments/head :: commonHead('Configuration')"></div>
+<body>
+    <div th:replace="fragments/header :: mainNav"></div>
+    <main>
+        <h1>Configuration</h1>
+
+        <div th:if="${message}" style="color:green; margin-bottom:1rem;" th:text="${message}"></div>
+        <div th:if="${error}" style="color:red; margin-bottom:1rem;" th:text="${error}"></div>
+
+        <div class="status-container">
+            <strong>Status:</strong>
+            <span th:if="${creds == null}" class="status-not-configured">Not Configured</span>
+            <span th:if="${creds != null}" 
+                th:classappend="${creds.state == 'Connected'} ? ' status-connected' :
+                                (${creds.state == 'Error'} ? ' status-error' : ' status-unknown')">
+                <span th:text="${creds.state}"></span>
+                <span th:if="${creds.state == 'Error'}" 
+                    th:title="${creds.litinc}" 
+                    class="error-tooltip">?</span>
+            </span>
+            
+        </div>
+
+        <form method="post" th:action="@{/config}">
+            <br />
+            <label for="url">Oracle-compatible DB URL:</label>
+            <input type="text" id="url" name="url" 
+                th:value="${creds != null} ? ${creds.url} : ''" 
+                placeholder="jdbc:oracle:thin:@localhost:1521:xe" required/><br /><br />
+
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" 
+                th:value="${creds != null} ? ${creds.username} : ''" 
+                placeholder="system" required/><br /><br />
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" 
+                th:value="${creds != null} ? ${creds.password} : ''" 
+                placeholder="passw" required/><br /><br />
+
+           <label for="role">Role (optional):</label>
+            <select id="role" name="role">
+                <option th:value="''" th:selected="${creds == null or creds.role == null}"></option>
+                <option th:value="SYSDBA" th:selected="${creds != null and creds.role == 'SYSDBA'}">SYSDBA</option>
+                <option th:value="SYSOPER" th:selected="${creds != null and creds.role == 'SYSOPER'}">SYSOPER</option>
+                <option th:value="SYSASM" th:selected="${creds != null and creds.role == 'SYSASM'}">SYSASM</option>
+            </select><br /><br />
+
+            <button type="submit">Save Configuration</button>
+        </form>
+    </main>
+
+    <div th:replace="fragments/footer :: mainFooter"></div>
+    <script src="/js/themes.js"></script>
+</body>
+</html>
